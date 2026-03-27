@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>축구교실 제안서 - 노페일디자인</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --main:#AE20D2;
+  --sub1:#E7A5F7;
+  --sub2:#E8E8E8;
+  --bg:#000000;
+  --fg:#FFFFFF;
+  --muted:rgba(255,255,255,.55);
+  --card:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --container:1100px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--fg);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── 공통 ── */
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.section{padding:120px 0}
+.section + .section{border-top:1px solid var(--border)}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--main);font-weight:600;margin-bottom:12px;text-align:center}
+.section-title{font-size:38px;font-weight:800;letter-spacing:-.5px;line-height:1.2;margin-bottom:16px;text-align:center}
+.section-sub{font-size:16px;color:var(--muted);max-width:600px;margin-bottom:48px;text-align:center;margin-left:auto;margin-right:auto}
+
+/* ── 블러인 + 슬라이드업 애니메이션 ── */
+.anim{opacity:0;transform:translateY(40px);filter:blur(10px);transition:opacity 1.3s ease,transform 1.3s ease,filter 1.3s ease}
+.anim.visible{opacity:1;transform:translateY(0);filter:blur(0)}
+.anim-d1{transition-delay:0s}
+.anim-d2{transition-delay:.15s}
+.anim-d3{transition-delay:.3s}
+.anim-d4{transition-delay:.45s}
+.anim-d5{transition-delay:.6s}
+
+/* ── 히어로 ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-tag{
+  display:inline-block;font-size:12px;padding:6px 20px;
+  border:1px solid rgba(174,32,210,.4);border-radius:999px;
+  color:var(--sub1);font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero h1{font-size:52px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:12px}
+.hero h1 span{color:var(--main)}
+.hero .muted{color:var(--muted);font-size:15px}
+.hero .cta{
+  margin-top:36px;display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:12px;font-weight:700;font-size:15px;
+  background:var(--main);color:#fff;transition:all .2s;
+}
+.hero .cta:hover{opacity:.9;transform:translateY(-2px)}
+
+/* ── CEO ── */
+.ceo-grid{display:grid;grid-template-columns:320px 1fr;gap:0;align-items:stretch;min-height:480px}
+.ceo-photo{
+  background:url("https://cdn.imweb.me/upload/S202412032ebb4a5517a3b/fe2eb548af41e.png") center/cover;
+  border-radius:16px 0 0 16px;
+}
+.ceo-text{padding:48px 48px 48px 32px;display:flex;flex-direction:column;justify-content:center}
+.ceo-text p{color:var(--sub2);font-size:16px;margin-bottom:14px}
+.ceo-text strong{color:#fff}
+.ceo-credit{margin-top:20px;font-size:18px;font-weight:600;color:#fff;border-top:1px solid var(--border);padding-top:16px}
+
+/* ── 카드 그리드 (개선방안/문제점) ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:32px;position:relative;overflow:hidden;transition:all .25s;
+}
+
+.card:hover{border-color:rgba(174,32,210,.3);transform:translateY(-4px)}
+.card .num{font-size:42px;font-weight:900;color:rgba(174,32,210,.15);line-height:1;margin-bottom:8px}
+.card h3{font-size:20px;font-weight:700;margin-bottom:6px}
+.card .card-sub{font-size:13px;color:var(--sub1);margin-bottom:14px}
+.card p{font-size:14px;color:var(--sub2);line-height:1.7}
+.card ul{list-style:none;margin-top:12px}
+.card li{position:relative;padding-left:20px;margin-bottom:8px;font-size:14px;color:var(--sub2);line-height:1.6}
+.card li::before{content:'→';position:absolute;left:0;color:var(--main);font-size:13px}
+
+/* ── 사이트맵 (GNB 프리뷰) ── */
+.sm-preview{margin:48px 0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.02)}
+
+/* 데스크탑 GNB 바 */
+.sm-gnb{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.03)}
+.sm-logo{font-size:15px;font-weight:700;color:#fff;letter-spacing:.5px}
+.sm-nav{display:flex;align-items:center;gap:28px}
+.sm-nav-item{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.02em;cursor:pointer;padding:4px 0;position:relative;transition:color .3s}
+.sm-nav-item::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main);transition:width .3s}
+.sm-nav-item:hover,.sm-nav-item.sm-active{color:#fff}
+.sm-nav-item:hover::after,.sm-nav-item.sm-active::after{width:100%}
+.sm-nav-group{position:relative}
+.sm-dropdown{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(6px);opacity:0;visibility:hidden;transition:all .3s;z-index:10;padding-top:8px}
+.sm-nav-group:hover .sm-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.sm-dropdown-box{background:rgba(30,30,30,.97);border:1px solid var(--border);border-radius:12px;padding:10px 8px;min-width:180px;display:flex;flex-direction:column;gap:2px}
+.sm-dropdown-box::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:rgba(30,30,30,.97);border-left:1px solid var(--border);border-top:1px solid var(--border);border-radius:2px 0 0 0}
+.sm-dropdown-link{font-size:13px;font-weight:500;color:rgba(255,255,255,.6);padding:8px 14px;border-radius:8px;transition:all .2s;cursor:default;display:flex;align-items:center;gap:6px}
+.sm-dropdown-link::before{content:'';display:inline-block;width:0;height:14px;border-radius:2px;background:var(--main);transition:width .2s}
+.sm-dropdown-link:hover{background:rgba(174,32,210,.08);color:var(--sub1)}
+.sm-dropdown-link:hover::before{width:3px}
+
+/* 데스크탑 콘텐츠 영역 (메인 페이지 미리보기) */
+.sm-body{padding:60px 40px;text-align:center;min-height:200px}
+.sm-body-title{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
+.sm-body-sub{font-size:14px;color:var(--muted)}
+
+/* 햄버거 + 모바일 풀스크린 메뉴 */
+.sm-hamburger{display:none;background:transparent;border:none;cursor:pointer;padding:4px}
+.sm-hamburger svg rect{fill:#fff}
+.sm-fullmenu{display:none;width:100%;background:rgba(0,0,0,.97);z-index:20;flex-direction:column;padding:24px}
+.sm-fullmenu.sm-open{display:flex}
+.sm-preview.sm-menu-open .sm-gnb{position:relative;z-index:21}
+.sm-preview.sm-menu-open .sm-body{display:none}
+.sm-fm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.sm-fm-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:1px}
+.sm-fm-close{background:transparent;border:none;cursor:pointer;padding:4px}
+.sm-fm-close svg line{stroke:#fff}
+.sm-acc-item{border-bottom:1px solid rgba(255,255,255,.06)}
+.sm-acc-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0;background:transparent;border:none;cursor:pointer;font-size:15px;font-weight:600;color:#fff}
+.sm-acc-btn svg{transition:transform .3s}
+.sm-acc-item.sm-open .sm-acc-btn svg{transform:rotate(180deg)}
+.sm-acc-sub{display:none;padding:0 0 10px;list-style:none;margin:0}
+.sm-acc-item.sm-open .sm-acc-sub{display:block}
+.sm-acc-sub li{padding:8px 0 8px 16px;font-size:14px;color:rgba(255,255,255,.6)}
+.sm-acc-link{display:block;padding:14px 0;font-size:15px;font-weight:600;color:#fff;text-decoration:none}
+
+/* 페이지 수 뱃지 */
+.sm-badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--main);color:var(--sub1);margin-left:12px;font-weight:600}
+
+.sm-body-mobile{display:none}
+
+@media(max-width:768px){
+  .sm-nav{display:none}
+  .sm-hamburger{display:flex}
+  .sm-preview{position:relative}
+  .sm-body-desktop{display:none}
+  .sm-body-mobile{display:block}
+}
+
+/* ── 기획의도 ── */
+.intent-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:36px;margin-bottom:24px;position:relative;overflow:hidden;
+}
+
+.intent-q{font-size:15px;font-weight:600;color:var(--fg);margin-bottom:10px}
+.intent-a{font-size:14px;color:var(--sub2);line-height:1.8;margin-bottom:16px}
+.intent-benefits{
+  background:rgba(174,32,210,.06);border:1px solid var(--main);
+  padding:16px 20px;border-radius:15px;
+}
+.intent-benefits li{font-size:13px;color:var(--sub2);margin-bottom:6px;padding-left:20px;position:relative;list-style:none}
+.intent-benefits li::before{content:'✓';position:absolute;left:0;color:var(--main);font-weight:700}
+
+/* ── 기대효과 ── */
+.outcome-card{
+  display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:36px;margin-bottom:24px;position:relative;overflow:hidden;
+}
+
+.outcome-metric{font-size:40px;font-weight:800;color:var(--main);margin-bottom:6px}
+.outcome-label{font-size:18px;font-weight:700;margin-bottom:16px}
+.outcome-desc{font-size:14px;color:var(--sub2);line-height:1.8}
+
+/* 원형 차트 차오르기 애니메이션 */
+.chart-progress{stroke-dashoffset:377;transition:stroke-dashoffset 1.8s ease-out}
+.chart-progress.chart-filled{stroke-dashoffset:attr(data-target)}
+
+/* ── 왜 노페일 ── */
+.why-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px;margin-bottom:16px;transition:all .25s;
+}
+.why-card:hover{border-color:rgba(174,32,210,.3)}
+.why-card h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--main)}
+.why-card p{font-size:14px;color:var(--sub2);line-height:1.7}
+
+/* ── 가격표 ── */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.price-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px;text-align:center;position:relative;
+}
+.price-card.featured{border-color:rgba(174,32,210,.4);background:rgba(174,32,210,.06)}
+.price-card h3{font-size:18px;font-weight:700;margin-bottom:12px}
+.price-amount{font-size:28px;font-weight:800;color:#fff;margin-bottom:4px}
+.price-note{font-size:13px;color:var(--muted);margin-bottom:16px}
+.price-card ul{list-style:none;text-align:left}
+.price-card li{padding:8px 0 8px 20px;font-size:14px;color:var(--sub2);border-top:1px dashed rgba(255,255,255,.08);position:relative}
+.price-card li:first-child{border-top:none}
+.price-card li::before{content:'✓';position:absolute;left:0;color:var(--sub1);font-weight:700}
+
+/* ── 견적 요약 ── */
+.estimate-box{
+  background:rgba(174,32,210,.06);border:1px solid rgba(174,32,210,.2);
+  border-radius:16px;padding:32px;margin-top:48px;
+}
+.estimate-row{display:flex;justify-content:space-between;padding:8px 0;font-size:15px;color:var(--sub2)}
+.estimate-row.total{font-size:20px;font-weight:800;color:#fff;border-top:2px solid var(--main);padding-top:16px;margin-top:8px}
+
+/* ── 타임라인 (히스토리 스타일) ── */
+.tl-wrap{position:relative;padding:40px 0 0}
+.tl-line-bg{position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:100%;background:rgba(255,255,255,.08);z-index:1}
+.tl-line-fill{position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:0;background:var(--main);z-index:2;transition:height .05s linear}
+.tl-item{position:relative;display:flex;align-items:flex-start;padding:0 0 48px;z-index:3}
+.tl-item:last-child{padding-bottom:0}
+.tl-left{flex:0 0 calc(50% - 20px);padding-right:40px}
+.tl-dot-wrap{flex:0 0 40px;display:flex;justify-content:center;padding-top:6px;position:relative;z-index:4}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .4s,box-shadow .4s}
+.tl-dot.tl-active{background:var(--main);box-shadow:0 0 0 4px rgba(174,32,210,.25)}
+.tl-right{flex:0 0 calc(50% - 20px);padding-left:40px}
+.tl-step-num{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:2px;margin:0 0 6px;transition:color .4s}
+.tl-step-num.tl-active{color:var(--main)}
+.tl-step-title{font-size:18px;font-weight:700;color:#fff;margin:0 0 4px;line-height:1.4}
+.tl-step-desc{font-size:14px;color:var(--sub2);margin:0;line-height:1.6}
+/* 홀수: 좌측 빈칸, 우측 콘텐츠 */
+.tl-item .tl-left{visibility:hidden}
+.tl-item .tl-right .tl-content{text-align:left}
+/* 짝수: 좌측 콘텐츠, 우측 빈칸 — 좌우 반전 */
+.tl-item.tl-reverse .tl-left{visibility:visible;order:1}
+.tl-item.tl-reverse .tl-left .tl-content{text-align:right}
+.tl-item.tl-reverse .tl-dot-wrap{order:2}
+.tl-item.tl-reverse .tl-right{visibility:hidden;order:3}
+/* 모바일: 1컬럼 */
+@media(max-width:768px){
+  .tl-line-bg,.tl-line-fill{left:7px;transform:none}
+  .tl-item,.tl-item.tl-reverse{flex-wrap:nowrap}
+  .tl-item .tl-left,.tl-item.tl-reverse .tl-left{display:none}
+  .tl-dot-wrap,.tl-item.tl-reverse .tl-dot-wrap{flex:0 0 14px;padding-top:4px;order:1}
+  .tl-dot{width:12px;height:12px}
+  .tl-right,.tl-item.tl-reverse .tl-right{flex:1;padding-left:20px;padding-right:0;text-align:left;order:2;visibility:visible}
+  .tl-item.tl-reverse .tl-right .tl-content{text-align:left}
+}
+
+/* ── 반응형 ── */
+@media(max-width:960px){
+  .hero h1{font-size:36px}
+  .section-title{font-size:30px}
+  .ceo-grid{grid-template-columns:1fr}
+  .ceo-photo{height:360px;border-radius:16px 16px 0 0;
+  }
+  .ceo-text{padding:24px}
+  .outcome-card{grid-template-columns:1fr}
+  .sm-preview{position:relative}
+}
+@media(max-width:640px){
+  .hero h1{font-size:28px}
+  .section{padding:80px 0}
+  .section-title{font-size:24px}
+  .card-grid{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 히어로 ===== -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="hero-tag anim anim-d1">프리미엄 홈페이지 제작</span>
+    <h1 class="anim anim-d2">축구교실 <span>홈페이지 제작 제안서</span></h1>
+    <p class="muted anim anim-d3">노페일 디자인 | 담당자: 양리건 | 사업자번호: 274-26-01707</p>
+    <a href="#s1" class="cta anim anim-d4">제안서 보기 →</a>
+  </div>
+</section>
+
+<!-- ===== CEO 소개 ===== -->
+<section class="section" id="s1">
+  <div class="container">
+    <div class="ceo-grid">
+      <div class="ceo-photo anim"></div>
+      <div class="ceo-text">
+        <div class="eyebrow anim anim-d1" style="text-align:left">WHO HE IS</div>
+        <h2 class="section-title anim anim-d2" style="font-size:32px;text-align:left">Meet the CEO of<br>NoFail Design</h2>
+        <p class="anim anim-d3">노페일 디자인은 <strong>실패에서 시작된 회사</strong>입니다.</p>
+        <p class="anim anim-d3">5년 전 사업 실패로 큰 빚을 지게 되었지만, 그 경험에서 "실패하지 않는 방법"을 배웠습니다.</p>
+        <p class="anim anim-d3">그 후 <strong>1,000건이 넘는 프로젝트</strong>와 <strong>2억 원 규모의 광고 집행</strong>을 통해 성과가 나는 디자인의 원칙을 검증했고, <strong>200명이 넘는 디자이너</strong>를 컨설팅하며 성공의 방법론을 다듬어왔습니다.</p>
+        <div class="ceo-credit anim anim-d4">양리건<br><span style="font-size:14px;color:var(--muted)">노페일 디자인</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 고객사 이해 ===== -->
+<section class="section" id="s2">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Customer Understanding</div>
+    <h2 class="section-title anim anim-d2">축구교실을 이해합니다</h2>
+    <p class="section-sub anim anim-d3">치킨클럽은 서울 노원구에서 법인 형태로 운영되는 축구교실입니다. 2개 지점을 운영하며 체계적인 축구 교육 프로그램을 제공하고 있습니다.</p>
+    <div class="card-grid">
+      <div class="card anim anim-d3">
+    <div class="num">01</div>
+    <h3>정보 통합 제공으로 고객 편의성 극대화</h3>
+    <div class="card-sub">파편화된 정보를 한곳에 모아 학부모가 원하는 정보를 쉽게 찾을 수 있도록 합니다.</div>
+    <p>프로그램, 수강료, 시간표, 위치, 강사진 정보를 체계적으로 구조화하여 원스톱 정보 제공 시스템을 구축합니다.</p>
+    <ul><li>직관적인 네비게이션으로 3클릭 이내 모든 정보 접근 가능</li><li>프로그램별 상세 페이지에서 커리큘럼부터 수강료까지 한눈에 확인</li><li>FAQ 섹션으로 자주 묻는 질문 사전 해결</li><li>모바일 최적화로 언제 어디서나 편리한 정보 확인</li></ul>
+  </div><div class="card anim anim-d4">
+    <div class="num">02</div>
+    <h3>지역 기반 SEO 최적화로 검색 노출 극대화</h3>
+    <div class="card-sub">노원구 축구교실 검색 시 상위 노출되어 신규 고객 유입을 증대시킵니다.</div>
+    <p>지역 키워드 최적화와 구조화된 콘텐츠로 검색 엔진 친화적인 홈페이지를 구축합니다.</p>
+    <ul><li>노원구 축구교실 등 핵심 키워드 페이지 제목 및 메타 태그 최적화</li><li>구글 마이 비즈니스 및 네이버 플레이스 연동</li><li>지역 기반 콘텐츠 강화 (교통 안내, 주변 학교 정보)</li><li>구조화된 데이터 마크업 적용으로 검색 결과 노출 향상</li></ul>
+  </div><div class="card anim anim-d5">
+    <div class="num">03</div>
+    <h3>전문적인 디자인으로 신뢰도 강화</h3>
+    <div class="card-sub">퀄리티 있는 디자인으로 법인 운영의 전문성과 안정성을 시각적으로 전달합니다.</div>
+    <p>활력과 신뢰감이 공존하는 디자인으로 학부모의 첫인상을 긍정적으로 만듭니다.</p>
+    <ul><li>생동감 있는 훈련 장면 및 시설 고품질 이미지 활용</li><li>법인 정보 및 지점 운영 실적을 인포그래픽으로 시각화</li><li>강사진 프로필 및 자격증을 전문적으로 표현</li><li>깔끔하고 현대적인 레이아웃으로 신뢰감 구축</li></ul>
+  </div><div class="card anim anim-d5">
+    <div class="num">04</div>
+    <h3>전환율 최적화로 상담 문의 증대</h3>
+    <div class="card-sub">홈페이지 방문자를 실제 상담 문의로 전환시키는 비율을 높입니다.</div>
+    <p>명확한 CTA 배치와 심리적 장벽 제거로 전화 상담 및 온라인 문의를 유도합니다.</p>
+    <ul><li>모바일 화면 우측 하단 고정 전화 아이콘 (클릭 시 즉시 다이얼 연결)</li><li>모든 페이지 상단에 전화번호 명시</li><li>간편한 온라인 상담 신청 폼 (이름, 연락처, 문의사항만 입력)</li><li>수강료 투명 공개 및 환불 정책 명시로 가격 불안 해소</li></ul>
+  </div><div class="card anim anim-d5">
+    <div class="num">05</div>
+    <h3>학부모 후기 및 사회적 증거 강화</h3>
+    <div class="card-sub">실제 수강생 학부모의 긍정적인 후기로 신뢰도를 높입니다.</div>
+    <p>학부모 후기 게시판을 적극 활용하여 사회적 증거를 제공하고 입소문 효과를 극대화합니다.</p>
+    <ul><li>실명 또는 이니셜 처리된 학부모 후기 게시판 구축</li><li>별점 및 추천 여부 표시로 신뢰도 향상</li><li>사진 첨부 후기 우선 노출로 생동감 전달</li><li>메인 페이지에 대표 후기 발췌 배치</li></ul>
+  </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 사이트맵 ===== -->
+<section class="section" id="s5">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Sitemap</div>
+    <h2 class="section-title anim anim-d2">사이트맵</h2>
+    <p class="section-sub anim anim-d3">총 0페이지</p>
+    <div class="sm-preview anim anim-d4">
+
+      <!-- 데스크탑 GNB 바 -->
+      <div class="sm-gnb">
+        <div class="sm-logo">축구교실</div>
+        <nav class="sm-nav"></nav>
+        <button class="sm-hamburger" onclick="document.getElementById('sm-fm').classList.add('sm-open');this.closest('.sm-preview').classList.add('sm-menu-open')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
+            <rect width="24" height="2" rx="1" fill="white"/>
+            <rect x="8" y="8" width="16" height="2" rx="1" fill="white"/>
+            <rect x="4" y="16" width="20" height="2" rx="1" fill="white"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 데스크탑 콘텐츠 영역 (메인 페이지 미리보기) -->
+      <div class="sm-body">
+        <p class="sm-body-title">축구교실</p>
+        <p class="sm-body-sub sm-body-desktop">사이트맵 미리보기 · 메뉴에 마우스를 올려보세요<span class="sm-badge">0p</span></p>
+        <p class="sm-body-sub sm-body-mobile">왼쪽 상단 ☰ 을 클릭해서 메뉴를 확인해보세요<span class="sm-badge">0p</span></p>
+      </div>
+
+      <!-- 모바일 풀스크린 메뉴 -->
+      <div class="sm-fullmenu" id="sm-fm">
+        <div class="sm-fm-header">
+          <span class="sm-fm-title">MENU</span>
+          <button class="sm-fm-close" onclick="document.getElementById('sm-fm').classList.remove('sm-open');document.getElementById('sm-fm').closest('.sm-preview').classList.remove('sm-menu-open')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <line x1="2" y1="2" x2="22" y2="22" stroke="white" stroke-width="2"/>
+              <line x1="22" y1="2" x2="2" y2="22" stroke="white" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+
+        </div>
+  </div>
+</section>
+
+<!-- ===== 기획의도 ===== -->
+<section class="section" id="s6">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Page Intentions</div>
+    <h2 class="section-title anim anim-d2">메뉴별 기획의도</h2>
+    <p class="section-sub anim anim-d3">왜 이렇게 구성했는지, 어떤 효과가 있는지</p>
+    <div class="intent-card anim anim-d3">
+    <div class="num">01</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">인사말</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">대표의 교육 철학과 치킨클럽의 비전을 전달하여 학부모에게 신뢰감을 줍니다. 법인 운영의 안정성과 체계적인 교육 시스템을 강조합니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>교육 철학 공유로 학부모와의 공감대 형성</li><li>대표의 진정성 전달로 신뢰도 향상</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">02</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">운영 현황</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">법인 등록 정보와 2개 지점 운영 실적을 투명하게 공개하여 안정성과 전문성을 입증합니다. 학부모가 가장 중요하게 생각하는 신뢰도를 구축하는 핵심 페이지입니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>법인 운영 사실 강조로 안정성 확보</li><li>복수 지점 운영 경험으로 전문성 입증</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">03</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">커리큘럼</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">연령별, 수준별로 세분화된 프로그램을 상세히 안내하여 학부모가 자녀에게 맞는 프로그램을 선택할 수 있도록 돕습니다. 체계적인 교육 시스템을 보여주는 핵심 페이지입니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>맞춤형 프로그램 제시로 전환율 향상</li><li>체계적인 커리큘럼 강조로 전문성 입증</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">04</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">수강료 안내</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">수강료를 투명하게 공개하여 학부모의 가격 불안을 해소하고 전화 문의 전 기본 정보를 제공합니다. 환불 정책까지 명시하여 신뢰도를 높입니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>가격 투명성으로 신뢰도 향상</li><li>전화 문의 전 가격 확인으로 질 높은 상담 유도</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">05</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">강사 프로필</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">강사진의 경력과 자격증을 상세히 소개하여 교육의 질을 보장합니다. 학부모가 가장 궁금해하는 '누가 가르치는가'에 대한 명확한 답을 제공합니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>강사진 전문성 입증으로 신뢰도 향상</li><li>학부모 안심 제공으로 전환율 증대</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">06</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">훈련 시설</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">훈련장과 부대시설을 고품질 사진으로 보여주어 학부모가 시설의 안전성과 쾌적함을 확인할 수 있도록 합니다. 시각적 증거로 신뢰를 구축합니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>시설 안전성 확인으로 학부모 안심 제공</li><li>쾌적한 환경 강조로 경쟁력 확보</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">07</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">안전 관리</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">안전 관리 체계와 보험 가입 정보를 명시하여 학부모의 가장 큰 우려인 안전 문제를 해소합니다. 책임감 있는 운영 자세를 보여줍니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>안전 관리 체계 공개로 학부모 신뢰 확보</li><li>보험 가입 정보로 책임감 있는 운영 입증</li></ul>
+    </div>
+  </div><div class="intent-card anim anim-d3">
+    <div class="num">08</div>
+    <h3 style="font-size:20px;font-weight:700;color:var(--main);margin-bottom:4px">학부모 후기</h3>
+    <p class="intent-q">왜 이 페이지가 필요한가요?</p>
+    <p class="intent-a">실제 수강생 학부모의 후기를 통해 사회적 증거를 제공하고 입소문 효과를 극대화합니다. 잠재 고객의 의사결정을 돕는 핵심 페이지입니다.</p>
+    <div class="intent-benefits">
+      <p style="font-size:14px;font-weight:600;margin-bottom:10px">이렇게 하면 뭐가 좋아지나요?</p>
+      <ul><li>사회적 증거 제공으로 신뢰도 향상</li><li>실제 경험담으로 전환율 증대</li></ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ===== 기대효과 ===== -->
+<section class="section" id="s7">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Expected Results</div>
+    <h2 class="section-title anim anim-d2">기대효과</h2>
+    <div class="outcome-card anim anim-d3">
+    <div>
+      <div class="outcome-metric">150%</div>
+      <div class="outcome-label">검색 유입 증가율</div>
+      <p class="outcome-desc">지역 기반 SEO 최적화와 구조화된 콘텐츠로 노원구 축구교실 검색 시 상위 노출되어 신규 고객 유입이 크게 증가할 것으로 예상됩니다.</p>
+    </div>
+    <div style="text-align:center">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
+        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="10"/>
+        <circle class="chart-progress" cx="80" cy="80" r="60" fill="none" stroke="#AE20D2" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" data-target="0"/>
+      </svg>
+    </div>
+  </div><div class="outcome-card anim anim-d3">
+    <div>
+      <div class="outcome-metric">200%</div>
+      <div class="outcome-label">상담 전환율 향상</div>
+      <p class="outcome-desc">정보 통합 제공과 명확한 CTA 배치로 홈페이지 방문자가 실제 상담 문의로 전환되는 비율이 2배 이상 증가할 것으로 예상됩니다.</p>
+    </div>
+    <div style="text-align:center">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
+        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="10"/>
+        <circle class="chart-progress" cx="80" cy="80" r="60" fill="none" stroke="#AE20D2" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" data-target="0"/>
+      </svg>
+    </div>
+  </div><div class="outcome-card anim anim-d3">
+    <div>
+      <div class="outcome-metric">80%</div>
+      <div class="outcome-label">전화 문의 질 개선</div>
+      <p class="outcome-desc">FAQ와 상세 정보 제공으로 기본 정보를 미리 확인한 고객의 질 높은 문의가 전체의 80% 이상을 차지할 것으로 예상됩니다.</p>
+    </div>
+    <div style="text-align:center">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
+        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="10"/>
+        <circle class="chart-progress" cx="80" cy="80" r="60" fill="none" stroke="#AE20D2" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" data-target="75"/>
+      </svg>
+    </div>
+  </div><div class="outcome-card anim anim-d3">
+    <div>
+      <div class="outcome-metric">85점</div>
+      <div class="outcome-label">브랜드 신뢰도 향상</div>
+      <p class="outcome-desc">전문적인 디자인과 투명한 정보 공개로 학부모들이 느끼는 브랜드 신뢰도가 85점 이상으로 향상될 것으로 예상됩니다.</p>
+    </div>
+    <div style="text-align:center">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="transform:rotate(-90deg)">
+        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="10"/>
+        <circle class="chart-progress" cx="80" cy="80" r="60" fill="none" stroke="#AE20D2" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" data-target="57"/>
+      </svg>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ===== 왜 노페일 ===== -->
+<section class="section" id="s8">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Why NoFail Design</div>
+    <h2 class="section-title anim anim-d2">왜 노페일디자인인가</h2>
+    <div class="why-card anim anim-d3">
+    <h3>교육 서비스 업종 특화 경험</h3><p>노페일디자인은 학원, 교육 기관 등 교육 서비스 업종의 홈페이지 제작 경험이 풍부하여 치킨클럽의 비즈니스 특성을 정확히 이해하고 최적의 솔루션을 제공합니다.</p>
+  </div><div class="why-card anim anim-d4">
+    <h3>지역 기반 SEO 최적화 전문성</h3><p>노원구 축구교실 등 지역 키워드 최적화에 특화된 노하우로 검색 상위 노출을 보장하며, 신규 고객 유입을 극대화합니다.</p>
+  </div><div class="why-card anim anim-d5">
+    <h3>전환율 중심의 설계 철학</h3><p>단순히 예쁜 홈페이지가 아닌, 방문자를 실제 상담 문의로 전환시키는 데 최적화된 구조와 UX를 설계합니다.</p>
+  </div><div class="why-card anim anim-d5">
+    <h3>투명한 견적과 합리적인 가격</h3><p>420만원 예산 내에서 최대의 효과를 낼 수 있도록 Light 플랜과 Premium 플랜을 제안하며, 모든 비용을 투명하게 공개합니다.</p>
+  </div><div class="why-card anim anim-d5">
+    <h3>체계적인 프로젝트 관리</h3><p>기획부터 디자인, 개발, SEO 최적화까지 전 과정을 체계적으로 관리하며, 고객과의 긴밀한 소통으로 만족도 높은 결과물을 제공합니다.</p>
+  </div><div class="why-card anim anim-d5">
+    <h3>지속적인 유지보수 지원</h3><p>1년 무상 유지보수를 제공하며, 콘텐츠 업데이트 및 SEO 관리 등 장기적인 성과 창출을 위한 지원을 아끼지 않습니다.</p>
+  </div></div></section>
+<!-- ===== 비용 ===== -->
+<section class="section" id="s9">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Pricing</div>
+    <h2 class="section-title anim anim-d2">제작 비용</h2>
+    <p class="section-sub anim anim-d3"></p>
+    <div class="price-grid">
+      <div class="price-card featured anim anim-d3">
+        <h3>회사홈페이지</h3>
+        <div class="price-amount">—</div>
+        <div class="price-note">부가세 별도 · 제작 기간 총 4주</div>
+        <ul>
+          <li>기획부터 디자인까지</li>
+          <li>기본 10p 포함 (유형 무관 합산)</li>
+          <li>디자인 페이지 추가 시 30만원/p</li>
+          <li>게시판·입력폼 추가 시 15만원/p</li>
+          <li>수정 횟수 무제한</li>
+        </ul>
+      </div>
+      <div class="price-card anim anim-d4">
+        <h3>옵션1. AI컨텐츠 생성</h3>
+        <div class="price-amount">1,500,000원</div>
+        <div class="price-note">부가세 별도</div>
+        <ul>
+          <li>AI브랜드 광고 영상 1개</li>
+          <li>AI이미지 컨텐츠 20개</li>
+        </ul>
+      </div>
+      <div class="price-card anim anim-d5">
+        <h3>옵션2. 외국어 버전</h3>
+        <div class="price-amount">제작비의 20%</div>
+        <div class="price-note">1개 언어당 · 부가세 별도</div>
+        <ul>
+          <li>국문 기본 · 필요 언어만 선택</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 견적 요약 -->
+    <div class="estimate-box anim anim-d3">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:16px">자동 산출 견적</h3>
+      <div class="estimate-row total"><span>총 견적</span><span>—</span></div></div></div></section>
+<!-- ===== 타임라인 ===== -->
+<section class="section" id="s10">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Timeline</div>
+    <h2 class="section-title anim anim-d2">제작 타임라인</h2>
+    <p class="section-sub anim anim-d3">상담부터 런칭까지, 약 4주간의 여정</p>
+
+    <div class="tl-wrap">
+      <div class="tl-line-bg"></div>
+      <div class="tl-line-fill" id="tl-fill"></div>
+
+      <!-- STEP 1: 우측 -->
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-content"></div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 01</p>
+          <p class="tl-step-title">상담</p>
+          <p class="tl-step-desc">프로젝트 목표와 요구사항을 파악합니다</p>
+        </div></div>
+      </div>
+
+      <!-- STEP 2: 좌측 -->
+      <div class="tl-item tl-reverse">
+        <div class="tl-left"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 02</p>
+          <p class="tl-step-title">계약금</p>
+          <p class="tl-step-desc">계약 체결 후 착수금 입금</p>
+        </div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content"></div></div>
+      </div>
+
+      <!-- STEP 3: 우측 -->
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-content"></div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 03</p>
+          <p class="tl-step-title">기획</p>
+          <p class="tl-step-desc">사이트맵 · 와이어프레임 · 콘텐츠 기획</p>
+        </div></div>
+      </div>
+
+      <!-- STEP 4: 좌측 -->
+      <div class="tl-item tl-reverse">
+        <div class="tl-left"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 04</p>
+          <p class="tl-step-title">컨펌</p>
+          <p class="tl-step-desc">기획안 리뷰 및 최종 확인</p>
+        </div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content"></div></div>
+      </div>
+
+      <!-- STEP 5: 우측 -->
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-content"></div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 05</p>
+          <p class="tl-step-title">중도금</p>
+          <p class="tl-step-desc">디자인 착수 전 중도금 입금</p>
+        </div></div>
+      </div>
+
+      <!-- STEP 6: 좌측 -->
+      <div class="tl-item tl-reverse">
+        <div class="tl-left"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 06</p>
+          <p class="tl-step-title">디자인</p>
+          <p class="tl-step-desc">시안 제작 · 수정 무제한 · 최종 확정</p>
+        </div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content"></div></div>
+      </div>
+
+      <!-- STEP 7: 우측 -->
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-content"></div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 07</p>
+          <p class="tl-step-title">개발</p>
+          <p class="tl-step-desc">반응형 코딩 · 기능 구현 · QA 테스트</p>
+        </div></div>
+      </div>
+
+      <!-- STEP 8: 좌측 -->
+      <div class="tl-item tl-reverse">
+        <div class="tl-left"><div class="tl-content">
+          <p class="tl-step-num" data-tl-color>STEP 08</p>
+          <p class="tl-step-title">런칭</p>
+          <p class="tl-step-desc">도메인 연결 · SSL · 검색 노출 세팅 완료</p>
+        </div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot" data-tl-dot></div></div>
+        <div class="tl-right"><div class="tl-content"></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 타임라인 스크롤 게이지 스크립트 -->
+<script>
+(function(){
+  var wrap = document.querySelector('.tl-wrap');
+  var fill = document.getElementById('tl-fill');
+  var dots = document.querySelectorAll('[data-tl-dot]');
+  var colors = document.querySelectorAll('[data-tl-color]');
+  if(!wrap || !fill) return;
+
+  function onScroll(){
+    var rect = wrap.getBoundingClientRect();
+    var trigger = window.innerHeight * 0.6;
+    var h = Math.max(0, Math.min(trigger - rect.top, rect.height));
+    fill.style.height = h + 'px';
+
+    var items = wrap.querySelectorAll('.tl-item');
+    items.forEach(function(item, i){
+      var r = item.getBoundingClientRect();
+      var center = r.top + 6;
+      if(center < trigger){
+        if(dots[i]) dots[i].classList.add('tl-active');
+        item.querySelectorAll('[data-tl-color]').forEach(function(el){ el.classList.add('tl-active'); });
+      } else {
+        if(dots[i]) dots[i].classList.remove('tl-active');
+        item.querySelectorAll('[data-tl-color]').forEach(function(el){ el.classList.remove('tl-active'); });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  setTimeout(onScroll, 200);
+})();
+</script>
+
+<!-- ===== 포트폴리오 (Notion DB에서 동적 로드) ===== -->
+<section class="section" id="s11">
+  <div class="container">
+    <div class="eyebrow anim anim-d1">Portfolio</div>
+    <h2 class="section-title anim anim-d2">홈페이지 포트폴리오</h2>
+    <p class="section-sub anim anim-d3">카드를 클릭하면 실제 사이트로 이동합니다.</p>
+    <div class="card-grid anim anim-d4" id="portfolio-grid">
+      
+    </div>
+  </div>
+</section>
+
+<!-- 블러인+슬라이드 등장 애니메이션 스크립트 -->
+<script>
+(function(){
+  var els = document.querySelectorAll('.anim');
+  if (!els.length) return;
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el){ observer.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  /* 원형 차트 차오르기 애니메이션 */
+  var charts = document.querySelectorAll('.chart-progress');
+  if (charts.length && 'IntersectionObserver' in window) {
+    var chartObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = el.getAttribute('data-target') || '300';
+          el.style.strokeDashoffset = target;
+          chartObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    charts.forEach(function(c){ chartObserver.observe(c); });
+  }
+})();
+</script>
+
+</body>
+</html>
